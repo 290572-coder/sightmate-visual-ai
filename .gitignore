@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f9ff">
+  <meta name="description" content="SightMate is a student-built visual AI project that classifies images to support visual understanding.">
+  <title>SightMate – Visual AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+*{box-sizing:border-box} :root{--bg:#f8f9ff;--ink:#0d1c2e;--muted:#434654;--blue:#0043b1;--blue2:#1d5bd8;--pale:#e6eeff;--line:#dce4f2;--white:#fff} html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--ink);font-family:"Atkinson Hyperlegible Next",Arial,sans-serif;font-size:16px;line-height:1.55} button,input{font:inherit} button{cursor:pointer} button:focus-visible,a:focus-visible,label:focus-visible{outline:3px solid #f0a000;outline-offset:3px}.topbar{height:80px;position:sticky;top:0;z-index:10;background:rgba(248,249,255,.96);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:12px max(20px,calc((100vw - 760px)/2));border-bottom:1px solid rgba(13,28,46,.06)}.brand{display:flex;align-items:center;gap:10px;color:inherit;text-decoration:none}.brand-mark{width:40px;height:40px;border-radius:12px;background:var(--blue);color:white;display:grid;place-items:center;font-weight:800;font-size:22px}.brand strong{display:block;font-size:17px;line-height:1.1}.brand small{color:#64718a;font-size:12px}.top-actions{display:flex;align-items:center;gap:14px}.icon-button{border:1px solid var(--line);background:white;color:var(--blue);border-radius:12px;width:42px;height:42px;font-weight:700}.status-dot{width:10px;height:10px;border-radius:50%;background:#d69b2d;display:inline-block;flex:none}.status-dot.ready{background:#1b9b68}.status-dot.error{background:#c34d4d}main{max-width:760px;margin:0 auto;padding:0 20px 110px}.page{display:none;padding-top:20px}.page.active{display:block}.hero-card{background:var(--pale);border-radius:16px;padding:20px;margin-top:0;display:flex;flex-direction:column;gap:14px}.eyebrow{display:inline-flex;align-items:center;gap:8px;background:#d3e0fe;color:#56637c;border-radius:999px;padding:4px 12px;font-size:14px;font-weight:700;letter-spacing:.02em;width:max-content;max-width:100%}.hero-card h1,.page-intro h1{font-size:clamp(27px,6vw,38px);line-height:1.2;letter-spacing:-.025em;margin:0;font-weight:800}.hero-copy,.page-intro p{font-size:17px;line-height:1.6;color:var(--muted);margin:0}.notice{background:#d5e3fc;border-radius:10px;padding:12px;display:flex;gap:12px;align-items:flex-start;color:var(--ink)}.notice p{margin:0;font-size:14px;line-height:1.5}.notice-icon{width:22px;height:22px;border-radius:50%;background:#fff;color:var(--blue);font-weight:800;display:grid;place-items:center;flex:none}.primary-button,.secondary-button,.analyze-button,.upload-button{min-height:52px;border:0;border-radius:12px;padding:13px 18px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none}.primary-button{background:var(--blue);color:#fff;box-shadow:0 4px 7px #0d1c2e1a}.primary-button:hover,.analyze-button:hover{background:#00358e}.secondary-button{background:#dce9ff;color:var(--ink)}.hero-card .primary-button{margin-top:2px}.hero-card .secondary-button{min-height:48px}.feature-tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0 24px}.feature-tile{height:144px;border-radius:12px;overflow:hidden;display:flex;align-items:flex-end;padding:10px;color:white;font-weight:700;background:linear-gradient(145deg,#b7c9e7,#344c70 85%)}.feature-tile.clarity{background:linear-gradient(145deg,#b4d4ed,#315a80 85%)}.content-section{margin:24px 0}.content-section h2,.section-heading h2{font-size:22px;margin:0;font-weight:800}.section-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.section-heading span{color:var(--blue);font-weight:700}.step-list,.capability-list{display:grid;gap:8px}.step-card,.capability-card{background:white;border-radius:12px;padding:20px;display:flex;align-items:flex-start;gap:12px;box-shadow:0 1px 2px #0d1c2e0d}.step-number{width:48px;height:48px;border-radius:12px;background:var(--blue2);color:white;display:grid;place-items:center;font-size:20px;font-weight:800;flex:none}.step-number.pale{background:#d3e0fe;color:#56637c}.step-card h3,.capability-card h3,.model-card h3{margin:0 0 4px;font-size:18px}.step-card p,.capability-card p{margin:0;color:var(--muted);line-height:1.55}.capability-card{align-items:center}.cap-icon{width:40px;height:40px;border-radius:12px;background:#e6eeff;color:var(--blue);display:grid;place-items:center;font-size:23px;flex:none}.model-card,.team-card,.scanner-card,.result-card,.scores-card{background:white;border:1px solid #e8edf6;border-radius:16px;padding:20px;margin:20px 0;box-shadow:0 2px 8px #0d1c2e08}.model-heading{display:flex;align-items:center;gap:12px}.model-symbol{width:42px;height:42px;background:#e6eeff;color:var(--blue);border-radius:12px;display:grid;place-items:center;font-size:23px}.model-heading h3{margin:0}.model-heading p{margin:0;color:#66718a;font-size:13px}.model-status{display:flex;align-items:center;gap:9px;margin:18px 0 8px;flex-wrap:wrap}.status-pill{margin-left:auto;background:#fff3d9;color:#805600;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700}.status-pill.ready{background:#e2f5ed;color:#126744}.status-pill.error{background:#fde8e8;color:#9b2d2d}.model-description{font-size:14px;color:var(--muted);margin:8px 0 14px}.model-meta{display:flex;justify-content:space-between;gap:12px;border-top:1px solid #edf0f6;padding:9px 0;font-size:13px}.model-meta span{color:#657087}.model-meta strong{text-align:right}.team-card{background:#e6eeff}.team-kicker,.team-label{font-size:13px;color:#56637c;font-weight:700;letter-spacing:.04em;text-transform:uppercase}.team-card h2{margin:6px 0;font-size:22px}.team-card p{color:var(--muted);margin:0 0 18px}.team-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.team-chips span{background:white;border:1px solid #cfdbf2;border-radius:999px;padding:7px 12px;font-size:14px;font-weight:600}.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:76px;background:#fff;border-top:1px solid #e5eaf3;display:flex;justify-content:center;z-index:12;padding-bottom:env(safe-area-inset-bottom)}.nav-item{width:min(33.333%,160px);border:0;background:transparent;color:#68748b;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0}.nav-item span{font-size:24px;line-height:1.1}.nav-item small{font-size:12px;font-weight:600}.nav-item.selected{color:var(--blue)}.page-intro{margin:8px 0 20px}.page-intro .eyebrow{margin-bottom:12px}.scanner-card{padding:14px}.preview-wrap{height:280px;background:#f1f4fa;border:1px dashed #b8c6dd;border-radius:12px;position:relative;overflow:hidden;display:grid;place-items:center}.preview-wrap video,.preview-wrap img{width:100%;height:100%;object-fit:contain;background:#101827}.empty-preview{display:flex;flex-direction:column;align-items:center;text-align:center;color:#657087;padding:18px}.empty-preview strong{color:var(--ink);margin:8px 0 2px}.camera-glyph{font-size:48px;color:var(--blue)}.live-tag{position:absolute;top:12px;left:12px;background:#15243bdc;color:white;border-radius:999px;padding:5px 10px;font-size:11px;font-weight:700}.live-tag i{display:inline-block;width:7px;height:7px;border-radius:50%;background:#ef6464;margin-right:5px}.camera-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.camera-actions button{font-size:14px;padding:10px}.camera-actions button:disabled,.analyze-button:disabled{opacity:.45;cursor:not-allowed}.upload-button{margin-top:10px;background:#dce9ff;color:var(--ink);width:100%;cursor:pointer}.small-note,.inline-status{font-size:13px;color:#66718a;text-align:center;margin:10px 4px}.analyze-button{width:100%;background:var(--blue);color:#fff;margin-top:12px}.inline-status{min-height:22px}.compact{margin:16px 0}.result-card{text-align:center;padding:24px}.result-icon{width:44px;height:44px;border-radius:50%;background:#e2f5ed;color:#14734e;display:grid;place-items:center;font-size:24px;font-weight:800;margin:0 auto 12px}.result-label{font-size:12px;font-weight:800;color:#69758c;letter-spacing:.1em}.result-card h2{font-size:27px;margin:4px 0}.confidence-line{display:flex;justify-content:center;align-items:baseline;gap:7px}.confidence-line strong{font-size:30px;color:var(--blue)}.confidence-line span{font-size:13px;color:#657087}.confidence-track{height:9px;border-radius:99px;background:#e8edf5;overflow:hidden;margin:14px 0}.confidence-track span{height:100%;width:0;background:var(--blue2);display:block;border-radius:99px;transition:width .3s}.speak-button,.text-button{border:1px solid var(--line);background:white;color:var(--blue);border-radius:10px;padding:9px 14px;font-weight:700}.scores-card h3{margin:0 0 14px}.score-row{margin:12px 0}.score-label{display:flex;justify-content:space-between;gap:10px;font-size:14px;margin-bottom:5px}.score-bar{height:8px;border-radius:99px;background:#edf1f7;overflow:hidden}.score-bar span{height:100%;display:block;background:#4f82d9;border-radius:99px}.muted{color:#657087}.full{width:100%;margin-top:10px}.history-list{display:grid;gap:10px}.history-item{background:white;border:1px solid #e7ecf4;border-radius:12px;padding:14px;display:flex;justify-content:space-between;gap:12px;align-items:center}.history-item strong{display:block}.history-item small{color:#657087}.history-confidence{color:var(--blue);font-weight:800;white-space:nowrap}.empty-history{background:white;border:1px dashed #cbd5e5;border-radius:14px;padding:30px 20px;text-align:center;color:#657087}.empty-history span{font-size:32px}.empty-history strong{display:block;color:var(--ink);margin-top:8px}.empty-history p{margin:4px 0 0}.text-button{margin:16px 0}.toast{position:fixed;bottom:90px;left:50%;transform:translate(-50%,12px);background:#13243b;color:white;padding:10px 16px;border-radius:10px;opacity:0;pointer-events:none;transition:.2s;max-width:calc(100% - 32px);text-align:center;z-index:20}.toast.show{opacity:1;transform:translate(-50%,0)}body.large-text{font-size:19px}body.high-contrast{--bg:#fff;--ink:#000;--muted:#171717;--blue:#002b7a} @media(min-width:700px){main{padding-top:28px}.hero-card{padding:30px}.step-list{grid-template-columns:1fr 1fr}.step-card:last-child{grid-column:1/-1}.capability-list{grid-template-columns:1fr 1fr}.capability-card:last-child{grid-column:1/-1}.preview-wrap{height:380px}} @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+  </style>
+  <script defer src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+  <script>
+(() => {
+  "use strict";
+  const MODEL_URL = "https://teachablemachine.withgoogle.com/models/_5XWLyxGz/";
+  let model = null;
+  let stream = null;
+  let currentSource = null;
+  let latestPredictions = [];
+  let toastTimer = null;
+  const $ = (id) => document.getElementById(id);
+
+  const pages = {
+    home: $("homePage"), scan: $("scanPage"), results: $("resultsPage"), history: $("historyPage")
+  };
+
+  function showPage(name) {
+    Object.entries(pages).forEach(([key, page]) => {
+      const active = key === name;
+      page.hidden = !active;
+      page.classList.toggle("active", active);
+    });
+    document.querySelectorAll(".nav-item").forEach(btn => {
+      btn.classList.toggle("selected", btn.dataset.page === name);
+      btn.setAttribute("aria-current", btn.dataset.page === name ? "page" : "false");
+    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (name === "history") renderHistory();
+  }
+
+  function toast(message) {
+    const el = $("toast");
+    el.textContent = message;
+    el.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.classList.remove("show"), 2800);
+  }
+
+  function setModelState(state, message) {
+    ["modelDot", "modelDotLarge"].forEach(id => {
+      $(id).className = "status-dot" + (state === "ready" ? " ready" : state === "error" ? " error" : "");
+    });
+    $("modelStatus").textContent = message;
+    $("modelPill").textContent = state === "ready" ? "Connected" : state === "error" ? "Unavailable" : "Loading";
+    $("modelPill").className = "status-pill" + (state === "ready" ? " ready" : state === "error" ? " error" : "");
+    $("modelDescription").textContent = state === "ready"
+      ? "The real Teachable Machine image model is connected and ready to analyze a still image."
+      : state === "error"
+        ? "The model could not be loaded. Check your internet connection and refresh the page."
+        : "The model loads when the page opens. An internet connection is required.";
+  }
+
+  async function loadModel() {
+    try {
+      if (!window.tmImage) throw new Error("The Teachable Machine library did not load.");
+      model = await window.tmImage.load(MODEL_URL + "model.json", MODEL_URL + "metadata.json");
+      setModelState("ready", "Teachable Machine model is ready");
+      $("scanStatus").textContent = "Model ready. Start the camera or upload an image.";
+    } catch (err) {
+      console.error(err);
+      setModelState("error", "Model connection failed");
+      $("scanStatus").textContent = "Model unavailable. Check your connection and refresh.";
+    }
+  }
+
+  function stopCamera() {
+    if (stream) stream.getTracks().forEach(track => track.stop());
+    stream = null;
+    $("cameraVideo").srcObject = null;
+    $("cameraVideo").hidden = true;
+    $("liveTag").hidden = true;
+    $("stopCameraButton").disabled = true;
+    $("cameraButton").disabled = false;
+    $("cameraButton").textContent = "Start Camera";
+  }
+
+  async function startCamera() {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      $("scanStatus").textContent = "Camera access is not available here. Use HTTPS or localhost, or upload an image.";
+      return;
+    }
+    try {
+      stopCamera();
+      stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: "environment" } }, audio: false });
+      const video = $("cameraVideo");
+      video.srcObject = stream;
+      video.hidden = false;
+      $("imagePreview").hidden = true;
+      $("emptyPreview").hidden = true;
+      $("liveTag").hidden = false;
+      $("stopCameraButton").disabled = false;
+      $("cameraButton").disabled = true;
+      $("analyzeButton").disabled = false;
+      currentSource = video;
+      await video.play();
+      $("scanStatus").textContent = "Camera is on. Select Analyze Image to capture and classify one frame.";
+    } catch (err) {
+      console.error(err);
+      $("scanStatus").textContent = err.name === "NotAllowedError"
+        ? "Camera permission was denied. Allow camera access in your browser settings, or upload an image instead."
+        : "Could not start the camera. Try again or upload an image.";
+    }
+  }
+
+  function setImageSource(img) {
+    stopCamera();
+    currentSource = img;
+    $("imagePreview").src = img.src;
+    $("imagePreview").hidden = false;
+    $("emptyPreview").hidden = true;
+    $("liveTag").hidden = true;
+    $("analyzeButton").disabled = false;
+    $("scanStatus").textContent = "Image ready. Select Analyze Image to run the model.";
+  }
+
+  async function handleUpload(file) {
+    if (!file) return;
+    if (!file.type.startsWith("image/")) {
+      toast("Please choose an image file.");
+      return;
+    }
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => setImageSource(img);
+    img.onerror = () => { URL.revokeObjectURL(url); toast("That image could not be opened."); };
+    img.src = url;
+  }
+
+  async function analyzeImage() {
+    if (!model) { toast("The AI model is still loading or unavailable."); return; }
+    if (!currentSource) { toast("Start the camera or upload an image first."); return; }
+    $("analyzeButton").disabled = true;
+    $("scanStatus").textContent = "Analyzing image…";
+    $("analyzeButton").textContent = "Analyzing…";
+    try {
+      let source = currentSource;
+      if (source === $("cameraVideo")) {
+        const video = $("cameraVideo");
+        const canvas = $("captureCanvas");
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
+        source = canvas;
+      }
+      const predictions = await model.predict(source);
+      latestPredictions = predictions
+        .map(p => ({ className: String(p.className), probability: Number(p.probability) }))
+        .sort((a, b) => b.probability - a.probability);
+      if (!latestPredictions.length) throw new Error("The model returned no class scores.");
+      renderResults(latestPredictions);
+      saveHistory(latestPredictions[0]);
+      stopCamera();
+      showPage("results");
+      $("scanStatus").textContent = "Analysis complete.";
+    } catch (err) {
+      console.error(err);
+      $("scanStatus").textContent = "Analysis failed. Try another image.";
+      toast("Could not analyze this image. Please try again.");
+    } finally {
+      $("analyzeButton").disabled = !currentSource || !model;
+      $("analyzeButton").textContent = "Analyze Image";
+    }
+  }
+
+  function renderResults(predictions) {
+    const top = predictions[0];
+    const pct = Math.round(top.probability * 100);
+    $("topPrediction").textContent = top.className;
+    $("topConfidence").textContent = pct + "%";
+    $("topConfidenceBar").style.width = pct + "%";
+    $("allScores").replaceChildren();
+    predictions.forEach(item => {
+      const row = document.createElement("div");
+      row.className = "score-row";
+      const label = document.createElement("div");
+      label.className = "score-label";
+      const name = document.createElement("strong");
+      name.textContent = item.className;
+      const score = document.createElement("span");
+      score.textContent = Math.round(item.probability * 100) + "%";
+      label.append(name, score);
+      const track = document.createElement("div");
+      track.className = "score-bar";
+      const fill = document.createElement("span");
+      fill.style.width = Math.max(0, Math.min(100, item.probability * 100)) + "%";
+      track.append(fill);
+      row.append(label, track);
+      $("allScores").append(row);
+    });
+    $("resultGuidance").textContent = `The model's strongest match is "${top.className}". This is a category prediction only; it does not identify where an object is, measure distance, read signs, describe the full scene, or determine whether a path is safe.`;
+  }
+
+  function speakResult() {
+    if (!latestPredictions.length) return;
+    if (!("speechSynthesis" in window)) { toast("Spoken output is not supported in this browser."); return; }
+    const top = latestPredictions[0];
+    const utterance = new SpeechSynthesisUtterance(`The model predicted ${top.className} with ${Math.round(top.probability * 100)} percent confidence. This is a category prediction, not a safety assessment.`);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function getHistory() {
+    try { return JSON.parse(localStorage.getItem("sightmate-history") || "[]"); }
+    catch { return []; }
+  }
+  function saveHistory(top) {
+    const history = getHistory();
+    history.unshift({ label: top.className, confidence: Math.round(top.probability * 100), time: new Date().toISOString() });
+    localStorage.setItem("sightmate-history", JSON.stringify(history.slice(0, 30)));
+  }
+  function renderHistory() {
+    const history = getHistory();
+    const list = $("historyList");
+    list.replaceChildren();
+    $("clearHistoryButton").hidden = history.length === 0;
+    if (!history.length) {
+      const empty = document.createElement("div");
+      empty.className = "empty-history";
+      empty.innerHTML = "<span>◷</span><strong>No scans yet</strong><p>Your analyzed images will appear here. Images themselves are not saved.</p>";
+      list.append(empty);
+      return;
+    }
+    history.forEach(item => {
+      const row = document.createElement("article");
+      row.className = "history-item";
+      const details = document.createElement("div");
+      const name = document.createElement("strong");
+      name.textContent = item.label;
+      const date = document.createElement("small");
+      date.textContent = new Date(item.time).toLocaleString();
+      details.append(name, date);
+      const score = document.createElement("span");
+      score.className = "history-confidence";
+      score.textContent = item.confidence + "%";
+      row.append(details, score);
+      list.append(row);
+    });
+  }
+
+  document.querySelectorAll(".nav-item").forEach(btn => btn.addEventListener("click", () => showPage(btn.dataset.page)));
+  $("startScanButton").addEventListener("click", () => showPage("scan"));
+  $("howButton").addEventListener("click", () => $("howSection").scrollIntoView({ behavior: "smooth" }));
+  $("cameraButton").addEventListener("click", startCamera);
+  $("stopCameraButton").addEventListener("click", () => { stopCamera(); $("scanStatus").textContent = "Camera stopped."; });
+  $("imageInput").addEventListener("change", e => handleUpload(e.target.files && e.target.files[0]));
+  $("analyzeButton").addEventListener("click", analyzeImage);
+  $("speakButton").addEventListener("click", speakResult);
+  $("scanAgainButton").addEventListener("click", () => { currentSource = null; $("imagePreview").hidden = true; $("emptyPreview").hidden = false; $("analyzeButton").disabled = true; showPage("scan"); });
+  $("clearHistoryButton").addEventListener("click", () => { localStorage.removeItem("sightmate-history"); renderHistory(); toast("Scan history cleared."); });
+  $("accessibilityToggle").addEventListener("click", () => {
+    const choice = window.prompt("Accessibility options: type LARGE for larger text or CONTRAST for higher contrast.");
+    if (!choice) return;
+    if (choice.trim().toLowerCase() === "large") document.body.classList.toggle("large-text");
+    else if (choice.trim().toLowerCase() === "contrast") document.body.classList.toggle("high-contrast");
+    else toast("No setting changed.");
+  });
+  window.addEventListener("beforeunload", stopCamera);
+  loadModel();
+})();
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="SightMate home">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span><strong>SightMate</strong><small>Visual AI</small></span>
+    </a>
+    <div class="top-actions">
+      <button class="icon-button" id="accessibilityToggle" type="button" aria-label="Open accessibility settings" title="Accessibility settings">Aa</button>
+      <span class="status-dot" id="modelDot" aria-hidden="true"></span>
+    </div>
+  </header>
+
+  <main id="mainContent">
+    <section class="page active" id="homePage" aria-labelledby="homeTitle">
+      <div class="hero-card">
+        <div class="eyebrow"><span aria-hidden="true">✦</span> PCTVS Assistive Tech Project</div>
+        <h1 id="homeTitle">Making the world around you easier to understand.</h1>
+        <p class="hero-copy">SightMate uses a camera and an image-classification model to help users explore visual information around them.</p>
+        <div class="notice">
+          <span class="notice-icon" aria-hidden="true">!</span>
+          <p><strong>Safety Notice:</strong> SightMate is designed to support users, not replace white canes, guide dogs, mobility tools, or personal judgment. Always verify your surroundings directly.</p>
+        </div>
+        <button class="primary-button" id="startScanButton" type="button"><span aria-hidden="true">◎</span> Start Scanning <span aria-hidden="true">→</span></button>
+        <button class="secondary-button" id="howButton" type="button"><span aria-hidden="true">⌄</span> Explore How It Works</button>
+      </div>
+
+      <div class="feature-tiles" aria-label="Project highlights">
+        <article class="feature-tile campus"><span>Campus Ready</span></article>
+        <article class="feature-tile clarity"><span>Instant Clarity</span></article>
+      </div>
+
+      <section class="content-section" id="howSection">
+        <div class="section-heading"><h2>How SightMate Works</h2><span>3 Steps</span></div>
+        <div class="step-list">
+          <article class="step-card">
+            <span class="step-number">1</span><div><h3>Capture or Upload</h3><p>Point your device camera at an item or upload a photo from your device.</p></div>
+          </article>
+          <article class="step-card">
+            <span class="step-number pale">2</span><div><h3>Analyze the Image</h3><p>The connected Teachable Machine model compares the image with the visual categories it learned during training.</p></div>
+          </article>
+          <article class="step-card">
+            <span class="step-number pale">3</span><div><h3>Review the Result</h3><p>Hear or read the predicted category and its confidence score, then decide what to do next.</p></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>Core Features</h2>
+        <div class="capability-list">
+          <article class="capability-card"><span class="cap-icon">▧</span><div><h3>Image Classification</h3><p>Returns the category the model thinks is the closest match for the image you submit.</p></div></article>
+          <article class="capability-card"><span class="cap-icon">◷</span><div><h3>Confidence Scores</h3><p>Shows the model's scores for each trained class so results are easier to compare.</p></div></article>
+          <article class="capability-card"><span class="cap-icon">◖</span><div><h3>Accessible Controls</h3><p>Large buttons, clear text, keyboard support, and optional spoken results.</p></div></article>
+        </div>
+      </section>
+
+      <section class="model-card">
+        <div class="model-heading"><span class="model-symbol">⌘</span><div><h3>Machine Learning Model</h3><p>Live connection to the SightMate image model</p></div></div>
+        <div class="model-status"><span class="status-dot" id="modelDotLarge"></span><strong id="modelStatus">Connecting to model…</strong><span class="status-pill" id="modelPill">Loading</span></div>
+        <p class="model-description" id="modelDescription">The model loads when the page opens. An internet connection is required.</p>
+        <div class="model-meta"><span>Model type</span><strong>Teachable Machine Image</strong></div>
+        <div class="model-meta"><span>Analysis</span><strong>One image at a time</strong></div>
+      </section>
+
+      <section class="team-card">
+        <div class="team-kicker">A PCTVS student project</div>
+        <h2>PCTVS Assistive Technology</h2>
+        <p>Created to explore how accessible technology and machine learning can support visual understanding.</p>
+        <div class="team-label">Student Engineers</div>
+        <div class="team-chips"><span>Haley</span><span>Sharon</span><span>Afifah</span><span>Sayma</span></div>
+      </section>
+    </section>
+
+    <section class="page" id="scanPage" aria-labelledby="scanTitle" hidden>
+      <div class="page-intro"><div class="eyebrow">SIGHTMATE SCANNER</div><h1 id="scanTitle">Scan an image</h1><p>Use your camera or choose a photo to get a model prediction.</p></div>
+      <div class="scanner-card">
+        <div class="preview-wrap" id="previewWrap">
+          <video id="cameraVideo" autoplay playsinline muted aria-label="Live camera preview" hidden></video>
+          <img id="imagePreview" alt="Selected image preview" hidden>
+          <canvas id="captureCanvas" hidden></canvas>
+          <div class="empty-preview" id="emptyPreview"><span class="camera-glyph">◎</span><strong>Your preview will appear here</strong><span>Start your camera or upload an image</span></div>
+          <span class="live-tag" id="liveTag" hidden><i></i> LIVE CAMERA</span>
+        </div>
+        <div class="camera-actions">
+          <button class="primary-button" id="cameraButton" type="button">Start Camera</button>
+          <button class="secondary-button" id="stopCameraButton" type="button" disabled>Stop Camera</button>
+        </div>
+        <label class="upload-button" for="imageInput"><span aria-hidden="true">↑</span> Choose an Image</label>
+        <input id="imageInput" type="file" accept="image/*" hidden>
+        <p class="small-note">Camera access works on HTTPS or localhost. You can also upload an image without enabling your camera.</p>
+        <button class="analyze-button" id="analyzeButton" type="button" disabled>Analyze Image</button>
+        <div class="inline-status" id="scanStatus" role="status" aria-live="polite">Load the model, then choose an image to begin.</div>
+      </div>
+      <div class="notice compact"><span class="notice-icon">!</span><p><strong>Remember:</strong> A prediction is not a guarantee that an area or object is safe. Do not rely on SightMate alone for navigation.</p></div>
+    </section>
+
+    <section class="page" id="resultsPage" aria-labelledby="resultsTitle" hidden>
+      <div class="page-intro"><div class="eyebrow">YOUR ANALYSIS</div><h1 id="resultsTitle">Scan results</h1><p>Here is what the image model predicted.</p></div>
+      <div class="result-card">
+        <div class="result-icon">✓</div><div class="result-label">TOP PREDICTION</div>
+        <h2 id="topPrediction">No result yet</h2>
+        <div class="confidence-line"><strong id="topConfidence">—</strong><span>model confidence</span></div>
+        <div class="confidence-track"><span id="topConfidenceBar"></span></div>
+        <button class="speak-button" id="speakButton" type="button">▶ Read Result Aloud</button>
+      </div>
+      <div class="scores-card"><h3>All class scores</h3><div id="allScores"><p class="muted">Run an image analysis to see scores.</p></div></div>
+      <div class="notice compact"><span class="notice-icon">!</span><p id="resultGuidance">This result is a model prediction, not a description of the full scene or a safety assessment.</p></div>
+      <button class="primary-button full" id="scanAgainButton" type="button">Scan Another Image</button>
+    </section>
+
+    <section class="page" id="historyPage" aria-labelledby="historyTitle" hidden>
+      <div class="page-intro"><div class="eyebrow">RECENT ACTIVITY</div><h1 id="historyTitle">Scan history</h1><p>Your recent predictions are saved on this device.</p></div>
+      <div class="history-list" id="historyList"><div class="empty-history"><span>◷</span><strong>No scans yet</strong><p>Your analyzed images will appear here. Images themselves are not saved.</p></div></div>
+      <button class="text-button" id="clearHistoryButton" type="button" hidden>Clear scan history</button>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Main navigation">
+    <button class="nav-item selected" data-page="home" type="button"><span>⌂</span><small>Home</small></button>
+    <button class="nav-item" data-page="scan" type="button"><span>◎</span><small>Scan</small></button>
+    <button class="nav-item" data-page="history" type="button"><span>◷</span><small>History</small></button>
+  </nav>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
